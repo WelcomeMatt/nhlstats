@@ -7,6 +7,7 @@
 		$password = "Ueckert1!";
 
 		$conn = mysql_connect($host, $username, $password);
+		$_SESSION['team'] = $_POST['team'];
 		$teamID = $_POST['team'];
 
 		if(!$conn)
@@ -66,7 +67,7 @@
 		</table>
 		<script type="text/javascript">
 			function compareVal(attribute) {
-				
+				window.location.href="statcompare.php?stat=" + attribute;
 			}
 		</script>
 	</div>
