@@ -5,24 +5,38 @@
 </head>
 
 <body>
-	<ol>
-	<?php
-		$host = "localhost:3306";
-		$username = "root";
-		$password = "Ueckert1!";
+	<h1>NHL STATISTICS</h1>
+	<h6>Select a Team: </h6>
+	<form action="team.php" method="post">
+		<select name = "team">
+		<?php
+			$host = "localhost:3306";
+			$username = "root";
+			$password = "Ueckert1!";
 
-		$conn = mysql_connect($host, $username, $password);
+			$conn = mysql_connect($host, $username, $password);
 
-		if(!$conn)
-		{
-			echo "Unable to Connect";
-		}else{
-			echo "Connection success";
-		}
+			if(!$conn)
+			{
+				echo "Unable to Connect";
+			}else{
+				echo "Connection success";
+				mysql_select_db("nhl");
 
-		mysql_close($conn);
-	?>
-	</ol>	
+				$value = mysql_query("SELECT team_name FROM teams", $conn);
+
+				$i = 1;
+				while($row = mysql_fetch_array($value, MYSQL_ASSOC)){
+					echo "<option value={$i}>{$row['team_name']}</option>";
+					$i++;
+				}
+			}
+
+			mysql_close($conn);
+		?>
+		</select>
+		<input type="submit" name="submit" value="Enter"/>
+	</form>	
 </body>
 
 </html>
