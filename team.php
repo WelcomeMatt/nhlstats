@@ -4,7 +4,7 @@
 	<?php
 		$host = "localhost:3306";
 		$username = "root";
-		$password = "Ueckert1!";
+		$password = "pwd";
 
 		$conn = mysql_connect($host, $username, $password);
 		$_SESSION['team'] = $_POST['team'];
